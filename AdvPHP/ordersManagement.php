@@ -72,7 +72,7 @@
 	<?PHP
 	//code for connect db from file
 	include("connectDB.php");
-	$sql = "select o_id, username, date_order, sum(amount), order_status from orders Group by o_id, date_order" or die("Error:" . mysqli_error());
+	$sql = "SELECT * FROM orders Where o_id = and username = '$username'" or die("Error:" . mysqli_error());
 
 	$result = mysqli_query($conn, $sql);
 
@@ -119,6 +119,7 @@
 					<td>
 						<font id="a3"> <select name="order_status" id="order_status">
 								<!--code for order status choices --> 
+								<option value="paid">paid</option>
 								<option value="Processing">Processing</option>
 								<option value="Sent">Sent</option>
 							</select> </font>

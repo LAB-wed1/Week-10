@@ -14,7 +14,8 @@
 </head>
 
 <body>
-	<?PHP session_start();
+	<?PHP 
+	session_start();
 	include("include_banner.html");
 	ini_set('display_errors', 0); // hide warning
 	include("connectDB.php");
@@ -152,24 +153,25 @@
 	// insert to orders 
 	if ($i > 0) {
 		for ($j = 0; $j < $i; $j++) {
-			$sql_insert = /*code for insert data to orders*/
+			$sql_insert = "insert into orders (o_id, c_name, username, date_order, price, amount, total, card_number, order_status)
+			value($o_id+1, $array_c_id[$j]),'$array_c_name[$j]', '$username', '$date_order', $array_price[$j], $array_amount[$j], $array_total[$j], '$card_number', 'placed')";
 
-			$rs2 = /*code for insert query*/
+			$rs2 = mysqli_query($conn, $sql_insert);
 			if (!$rs2)
 				echo "can not add: $o_id";
 
 			// update clothing cal amount of stock
 			$sql_Update = "Update cloth SET stock=$array_stock[$j]-$array_amount[$j] WHERE c_id = $array_c_id[$j]";
-			$rs_Update = /*code for update query*/
+			$rs_Update = mysqli_query($conn, $sql_insert);
 			//if($rs_Update){
 			//	echo "<script>alert('Update Successful'); </script>";
 			//}
 		}
 		echo "<script>alert('Update Successful'); </script>";
 		// delete on cart where username = $username after placed orders
-		$sql_delete = /*code for delete data from cart*/
+		$sql_delete = "Delete from cart WHERE username = '$username'";
 		if ($j > 0) {
-			$rs3 = /*code for update query*/
+			$rs3 = mysqli_query($conn, $sql_delete);
 			if (!$rs3)
 				echo "can not delete";
 		}
