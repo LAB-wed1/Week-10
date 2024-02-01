@@ -20,7 +20,9 @@
 	<div class="container">
 		<p align="left"> <a href="costume.php"><img src="pic/home2.png" width="50" height="50"></a> </p>
 		<p align="right" id="p_1">
-			<?PHP session_start();
+			<?PHP 
+			include("snow.php");
+			session_start();
 			$username = $_REQUEST['username'];
 			if (isset($_SESSION['userName']))
 				echo "Welcome: " . $_SESSION['userName'];

@@ -37,7 +37,9 @@
 	<div class="container">
 		<p align="left"><a href="costume.php"><img src="pic/home2.png" width="50" height="50"></a> </p>
 		<p align="right" id="p_1">
-			<?PHP session_start();
+			<?PHP 
+			
+			session_start();
 			$_SESSION['refresh'] = 0;
 			if (isset($_SESSION['userName']))
 				echo "Welcome: " . $_SESSION['userName'];
@@ -66,6 +68,7 @@
 		</div>
 	</div>
 	<?php
+	include("snow.php");
 session_start();
 ini_set('display_errors', 0); // ซ่อนการแสดงข้อความแจ้งเตือน
 
