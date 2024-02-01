@@ -70,8 +70,9 @@
 	</div>
 
 	<?PHP
-	
+		include("snow.php");
 	//code for connect db from file
+	
 	include("connectDB.php");
 	$sql = "SELECT o_id, date_order, sum(amount), sum(total), order_status from orders Group by o_id, date_order" or die("Error:" . mysqli_error());
 

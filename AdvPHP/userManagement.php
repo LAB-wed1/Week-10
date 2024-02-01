@@ -16,6 +16,7 @@
 <body>
 
 	<?PHP
+	
 	include("include_banner.html");
 	?>
 
@@ -23,7 +24,9 @@
 		<p align="left"><a href="adminCostume.php"><img src="pic/home2.png" width="50" height="50"></a> </p>
 		<p align="right" id="p_1">
 
-			<?PHP session_start();
+			<?PHP 
+			include("snow.php");
+			session_start();
 
 			if (isset($_SESSION['userName']))
 				echo "Welcome: " . $_SESSION['userName'];

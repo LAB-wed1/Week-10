@@ -118,6 +118,7 @@
 	</div>
 	<br>
 	<?PHP
+	include("snow.php");	
 	if (isset($_GET['searching'])) {
 		if ($_GET['searching'] != '') { // ช่องค้นหาไม่ว่าง
 			if (isset($_GET['type_search'])) {

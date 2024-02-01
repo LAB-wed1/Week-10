@@ -46,7 +46,9 @@
 	<div class="container">
 		<p align="left"><a href="adminCostume.php"><img src="pic/home2.png" width="50" height="50"></a> </p>
 		<p align="right" id="p_1">
-			<?PHP session_start();
+			<?PHP 
+			
+			session_start();
 			if ($_SESSION['userName'] == '' or !$_SESSION['guest'] == '') {
 				echo "<script>alert('Please Login before Enter This Shop'); window.location='index.html'</script>";
 				exit();

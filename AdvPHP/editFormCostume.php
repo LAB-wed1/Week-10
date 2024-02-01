@@ -16,6 +16,8 @@
 <body id="grad1">
 
 	<?PHP
+
+	include("snow.php");
 	include("include_banner.html");
 	?>
 
