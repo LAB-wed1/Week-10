@@ -65,32 +65,44 @@
 			</div>
 		</div>
 	</div>
-	<?PHP
-	$c_id = $_REQUEST['c_id'];
-	if (isset($_SESSION['userName']))
-		$username = $_SESSION['userName'];
-	if (isset($_SESSION['guest']))
-		$username = $_SESSION['guest'];
-	$cnt = //code for data form receive
-	$gender = //code for data form receive
-	$color = //code for data form receive
-	$price = //code for data form receive
-	$total = //code for data form receive
-	$refresh = //code for data form receive
-	$amount = //code for data form receive
+	<?php
+session_start();
+ini_set('display_errors', 0); // ซ่อนการแสดงข้อความแจ้งเตือน
 
-	// show cart
-	if ($amount == 0) {
-		echo "<p align='center' id='font3'>ไม่มีสินค้าในตะกร้า !</p>";
-	} else {
-		$sql = /*code for select data from cart*/ or die("Error:" . mysqli_error($conn));
-		$result = mysqli_query($conn, $sql);
-		if (!$result) {
-			echo "Can not Show Data";
-		}
+// ตรวจสอบว่ามีการล็อกอินเข้าสู่ระบบหรือไม่ และกำหนด username
+if (isset($_SESSION['userName'])) {
+    $username = $_SESSION['userName'];
+} elseif (isset($_SESSION['guest'])) {
+    $username = $_SESSION['guest'];
+}
 
-		$total = 0;
-		?>
+// รับค่าจากฟอร์ม
+$c_id = $_REQUEST['c_id'];
+$cnt = $_REQUEST['cnt'];
+$gender = $_REQUEST['gender'];
+$color = $_REQUEST['color'];
+$price = $_REQUEST['price'];
+$total = $cnt* $price;
+$refresh = $_REQUEST['refresh'];
+$amount = $_REQUEST	['amount'];
+
+// แสดงตะกร้าสินค้า
+if ($amount == 0) {
+    echo "<p align='center' id='font3'>ไม่มีสินค้าในตะกร้า !</p>";
+} else {
+    // เรียกดูข้อมูลจากตาราง cart และ cloth
+    $sql = "SELECT * FROM cart  INNER JOIN cloth ON cart.c_id = cloth.c_id and  cart.username = '$username'" or die ("Error: " . mysqli_error($conn));	
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        echo "ไม่สามารถแสดงข้อมูลได้";
+    } else {
+        $total = 0;
+        // ใส่โค้ดที่นี่เพื่อแสดงข้อมูลสินค้าในตะกร้า
+    }
+}
+?>
+
 		<br>
 		<table width="1150" align="center">
 			<tr bgcolor="#F5B7B1" height="50">
@@ -189,7 +201,7 @@
 		</table>
 		<br><br>
 		<br><br>
-	<?PHP }
+	<?PHP 
 	mysqli_close($conn);
 	include("include_footer.html");
 	?>

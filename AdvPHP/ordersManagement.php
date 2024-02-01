@@ -71,9 +71,10 @@
 
 	<?PHP
 	//code for connect db from file
-	$sql = /*code for select data from orders*/ or die("Error:" . mysqli_error());
+	include("connectDB.php");
+	$sql = "select o_id, username, date_order, sum(amount), order_status from orders Group by o_id, date_order" or die("Error:" . mysqli_error());
 
-	$result = /*code for select query*/
+	$result = mysqli_query($conn, $sql);
 
 	?>
 
