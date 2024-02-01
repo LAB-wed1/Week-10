@@ -70,9 +70,10 @@
 	</div>
 
 	<?PHP
+	
 	//code for connect db from file
 	include("connectDB.php");
-	$sql = "SELECT * FROM orders Where o_id = and username = '$username'" or die("Error:" . mysqli_error());
+	$sql = "SELECT o_id, date_order, sum(amount), sum(total), order_status from orders Group by o_id, date_order" or die("Error:" . mysqli_error());
 
 	$result = mysqli_query($conn, $sql);
 
