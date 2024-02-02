@@ -137,15 +137,15 @@
 				$type_price = $_GET['type_price'];
 				if ($_GET['type_search'] == 'c_name') {
 					$c_name = $_GET['searching'];
-					 $sql = "SELECT * FROM your_table WHERE c_name = '$c_name'";
+					$sql = "SELECT * FROM cloth where c_name like '%" . $c_name . "%' ORDER by price $type_price";
 				}
 				if ($_GET['type_search'] == 'color') {
 					$color = $_GET['searching'];
-					$sql = "SELECT * FROM your_table WHERE color = '$color'";
+					$sql = "SELECT * FROM cloth where color like '%" . $color . "%' ORDER by price $type_price";
 				}
 				if ($_GET['type_search'] == 'size') {
 					$size = strtoupper($_GET['searching']);
-					 $sql = "SELECT * FROM your_table WHERE size = '$size'";
+					$sql = "SELECT * FROM cloth where size like '$size' ORDER by price $type_price";
 				}
 
 				if ($_GET['type_search'] == 'gender') {
@@ -166,7 +166,7 @@
 						$gender = "U";
 						$sql = "SELECT * FROM cloth where gender like '$gender' and stock > 0 ORDER by price $type_price";
 					}
-				 $sql = "SELECT * FROM cloth WHERE gender LIKE '$gender' AND stock > 0 ORDER BY price $type_price";
+				 $sql = "SELECT * FROM cloth where gender like '$gender' or gender like 'u' ORDER by price $type_price";
 				}
 
 				//echo $c_name;
@@ -188,7 +188,7 @@
 		if ($_GET['category'] != '') {
 			$ct_id = $_GET['category'];
 			echo $ct_id;
-			$sql = "SELECT * FROM cloth WHERE category = '$ct_id' AND stock > 0 ORDER BY price $type_price";
+$sql = "SELECT * FROM cloth where ct_id like $ct_id ORDER by price $type_price";
 		}
 	}
 
